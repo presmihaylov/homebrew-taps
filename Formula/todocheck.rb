@@ -11,6 +11,8 @@ class Todocheck < Formula
   depends_on "go" => :build
 
   def install
+    # fix for https://github.com/golang/go/issues/51706
+    system "go", "get", "-u", "golang.org/x/sys" 
     system "go", "build", "-ldflags", "-X 'main.version=%s'" % version, "-o", "todocheck"
     bin.install "todocheck"
   end
