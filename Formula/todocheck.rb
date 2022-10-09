@@ -3,9 +3,11 @@
 class Todocheck < Formula
   desc "A static-code analyzer, ensuring your TODOs are linked to your issue tracker"
   homepage "https://github.com/preslavmihaylov/todocheck"
-  url "https://github.com/preslavmihaylov/todocheck/archive/refs/tags/v0.5.0.zip"
-  version "0.5.0"
-  sha256 "b6ef774f5f13a6aaa57188e49bd7171897cf62739632c19f12b2ca74bfd94ee5"
+  url "https://github.com/preslavmihaylov/todocheck/archive/refs/tags/v0.6.0.zip"
+  version "0.6.0"
+
+  # generate \w shasum -a 256 path/to/file
+  sha256 "1cc57b76522f1d12a9f8f4cdf8386d83f1e7d209b151ac58840f48e4c6315316" 
   license "MIT"
 
   depends_on "go" => :build
