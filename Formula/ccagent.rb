@@ -7,24 +7,20 @@ class Ccagent < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-darwin-arm64"
-      sha256 "Getting SHA256 for ccagent-v0.0.1-darwin-arm64...
-9d6b9d230db6a682b4f1b929f8c03c923e6d949d7eb14f1eebbb0ffc4f433456"
+      sha256 "9d6b9d230db6a682b4f1b929f8c03c923e6d949d7eb14f1eebbb0ffc4f433456"
     else
       url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-darwin-x86_64"
-      sha256 "Getting SHA256 for ccagent-v0.0.1-darwin-x86_64...
-30b34e7c0cd6386ae6965316b7906f0af8bdfa0cf1587998cfdb2b788f9bb1d9"
+      sha256 "30b34e7c0cd6386ae6965316b7906f0af8bdfa0cf1587998cfdb2b788f9bb1d9"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-linux-arm64"
-      sha256 "Getting SHA256 for ccagent-v0.0.1-linux-arm64...
-7a9b142e5f75ee8c90119fa7e2c6e60e0bb97bd3facb38ff079ae93dced34c6d"
+      sha256 "7a9b142e5f75ee8c90119fa7e2c6e60e0bb97bd3facb38ff079ae93dced34c6d"
     else
       url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-linux-x86_64"
-      sha256 "Getting SHA256 for ccagent-v0.0.1-linux-x86_64...
-49fa15c8238b3696aa6b8558e2852e281444ee2f78de6c17d315ab7d7329bc85"
+      sha256 "49fa15c8238b3696aa6b8558e2852e281444ee2f78de6c17d315ab7d7329bc85"
     end
   end
 

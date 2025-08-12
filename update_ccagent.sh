@@ -23,21 +23,21 @@ fi
 # Function to get SHA256 for a release asset
 get_asset_sha256() {
     local asset_name="$1"
-    echo "Getting SHA256 for $asset_name..."
+    echo "Getting SHA256 for $asset_name..." >&2  # Send debug to stderr
     
     # Try to get SHA256 from the .sha256 file first
     local sha256=$(gh release download "v$VERSION" --repo presmihaylov/ccagent --pattern "$asset_name.sha256" --output - 2>/dev/null | cut -d' ' -f1 || true)
     
     if [ -z "$sha256" ]; then
-        echo "Warning: Could not get SHA256 file for $asset_name, calculating from binary..."
+        echo "Warning: Could not get SHA256 file for $asset_name, calculating from binary..." >&2
         # Fallback: download the binary and calculate SHA256
         local temp_file=$(mktemp)
-        gh release download "v$VERSION" --repo presmihaylov/ccagent --pattern "$asset_name" --output "$temp_file"
+        gh release download "v$VERSION" --repo presmihaylov/ccagent --pattern "$asset_name" --output "$temp_file" >&2
         sha256=$(shasum -a 256 "$temp_file" | cut -d' ' -f1)
         rm "$temp_file"
     fi
     
-    echo "$sha256"
+    echo "$sha256"  # Only output the SHA256 to stdout
 }
 
 # Get SHA256 hashes for all platforms
