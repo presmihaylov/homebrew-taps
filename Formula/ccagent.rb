@@ -2,25 +2,29 @@ class Ccagent < Formula
   desc "CLI agent for Claude Code integration with Socket.IO backend"
   homepage "https://github.com/presmihaylov/ccagent"
   license "MIT"
-  version "0.0.4"
+  version "0.0.1"
   
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-darwin-arm64"
-      sha256 "13b98916b679d612a1f8763f08c8d3c9b4c9b26ca110452ca2c25778babf51f9"
+      sha256 "Getting SHA256 for ccagent-v0.0.1-darwin-arm64...
+9d6b9d230db6a682b4f1b929f8c03c923e6d949d7eb14f1eebbb0ffc4f433456"
     else
       url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-darwin-x86_64"
-      sha256 "c02356d612f0b4513a33143ea2b6a1fe02cc8c001a4152bfb28ff00758a85523"
+      sha256 "Getting SHA256 for ccagent-v0.0.1-darwin-x86_64...
+30b34e7c0cd6386ae6965316b7906f0af8bdfa0cf1587998cfdb2b788f9bb1d9"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-linux-arm64"
-      sha256 "a8986842a76f10663aed3b8ab0db6d23a89766940266a2ce936255a04e10bc16"
+      sha256 "Getting SHA256 for ccagent-v0.0.1-linux-arm64...
+7a9b142e5f75ee8c90119fa7e2c6e60e0bb97bd3facb38ff079ae93dced34c6d"
     else
       url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-linux-x86_64"
-      sha256 "1e2a73c86d51b5f9d82a33b97c30c44d36018c641dd685aad7b069de9e37f55f"
+      sha256 "Getting SHA256 for ccagent-v0.0.1-linux-x86_64...
+49fa15c8238b3696aa6b8558e2852e281444ee2f78de6c17d315ab7d7329bc85"
     end
   end
 
