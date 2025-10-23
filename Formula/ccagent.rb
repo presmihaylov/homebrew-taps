@@ -2,7 +2,7 @@ class Ccagent < Formula
   desc "CLI agent for Claude Code integration with Socket.IO backend"
   homepage "https://github.com/presmihaylov/ccagent"
   license "MIT"
-  version "0.0.15"
+  version "0.0.14"
   
   on_macos do
     if Hardware::CPU.arm?
