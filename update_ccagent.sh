@@ -6,10 +6,24 @@ set -e
 if [ -z "$1" ]; then
     echo "Usage: $0 <version>"
     echo "Example: $0 0.0.3"
+    echo ""
+    echo "NOTE: Do NOT include 'v' prefix. Use '0.0.3' not 'v0.0.3'"
     exit 1
 fi
 
 VERSION="$1"
+
+# Validate that version does not start with 'v'
+if [[ "$VERSION" =~ ^v[0-9] ]]; then
+    echo "❌ Error: Version should NOT include 'v' prefix"
+    echo "   You provided: $VERSION"
+    echo "   Should be:    ${VERSION#v}"
+    echo ""
+    echo "Usage: $0 <version>"
+    echo "Example: $0 0.0.3  (NOT v0.0.3)"
+    exit 1
+fi
+
 FORMULA_FILE="Formula/ccagent.rb"
 
 echo "Updating ccagent Homebrew formula to version $VERSION..."
