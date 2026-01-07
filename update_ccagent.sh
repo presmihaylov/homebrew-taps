@@ -40,13 +40,13 @@ get_asset_sha256() {
     echo "Getting SHA256 for $asset_name..." >&2  # Send debug to stderr
     
     # Try to get SHA256 from the .sha256 file first
-    local sha256=$(gh release download "v$VERSION" --repo presmihaylov/ccagent --pattern "$asset_name.sha256" --output - 2>/dev/null | cut -d' ' -f1 || true)
-    
+    local sha256=$(gh release download "$VERSION" --repo presmihaylov/ccagent --pattern "$asset_name.sha256" --output - 2>/dev/null | cut -d' ' -f1 || true)
+
     if [ -z "$sha256" ]; then
         echo "Warning: Could not get SHA256 file for $asset_name, calculating from binary..." >&2
         # Fallback: download the binary and calculate SHA256
         local temp_file=$(mktemp)
-        gh release download "v$VERSION" --repo presmihaylov/ccagent --pattern "$asset_name" --output "$temp_file" >&2
+        gh release download "$VERSION" --repo presmihaylov/ccagent --pattern "$asset_name" --output "$temp_file" >&2
         sha256=$(shasum -a 256 "$temp_file" | cut -d' ' -f1)
         rm "$temp_file"
     fi
@@ -56,10 +56,10 @@ get_asset_sha256() {
 
 # Get SHA256 hashes for all platforms
 echo "Fetching SHA256 hashes..."
-DARWIN_ARM64_SHA=$(get_asset_sha256 "ccagent-v$VERSION-darwin-arm64")
-DARWIN_X86_64_SHA=$(get_asset_sha256 "ccagent-v$VERSION-darwin-x86_64")
-LINUX_ARM64_SHA=$(get_asset_sha256 "ccagent-v$VERSION-linux-arm64")
-LINUX_X86_64_SHA=$(get_asset_sha256 "ccagent-v$VERSION-linux-x86_64")
+DARWIN_ARM64_SHA=$(get_asset_sha256 "ccagent-$VERSION-darwin-arm64")
+DARWIN_X86_64_SHA=$(get_asset_sha256 "ccagent-$VERSION-darwin-x86_64")
+LINUX_ARM64_SHA=$(get_asset_sha256 "ccagent-$VERSION-linux-arm64")
+LINUX_X86_64_SHA=$(get_asset_sha256 "ccagent-$VERSION-linux-x86_64")
 
 echo "Updating formula with SHA256 hashes..."
 
@@ -73,20 +73,20 @@ class Ccagent < Formula
   
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-darwin-arm64"
+      url "https://github.com/presmihaylov/ccagent/releases/download/#{version}/ccagent-#{version}-darwin-arm64"
       sha256 "$DARWIN_ARM64_SHA"
     else
-      url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-darwin-x86_64"
+      url "https://github.com/presmihaylov/ccagent/releases/download/#{version}/ccagent-#{version}-darwin-x86_64"
       sha256 "$DARWIN_X86_64_SHA"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-linux-arm64"
+      url "https://github.com/presmihaylov/ccagent/releases/download/#{version}/ccagent-#{version}-linux-arm64"
       sha256 "$LINUX_ARM64_SHA"
     else
-      url "https://github.com/presmihaylov/ccagent/releases/download/v#{version}/ccagent-v#{version}-linux-x86_64"
+      url "https://github.com/presmihaylov/ccagent/releases/download/#{version}/ccagent-#{version}-linux-x86_64"
       sha256 "$LINUX_X86_64_SHA"
     end
   end
