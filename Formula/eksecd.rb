@@ -1,26 +1,26 @@
 class Eksecd < Formula
-  desc "Daemon for running AI coding agents on the eksec.ai platform"
+  desc "CLI agent for Claude Code integration with Socket.IO backend"
   homepage "https://github.com/eksecai/eksecd"
   license "MIT"
-  version "0.0.53"
+  version "0.0.54"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/eksecai/eksecd/releases/download/#{version}/eksecd-#{version}-darwin-arm64"
-      sha256 "d0b129bf0e20499cac7b56dbf80a54f49a44d25bc9082c43508e1e2a1a1727bc"
+      sha256 "b2a5e8dc6012417513d24980574e90c4f723dcad6f2cbb26569f291ffbfcd349"
     else
       url "https://github.com/eksecai/eksecd/releases/download/#{version}/eksecd-#{version}-darwin-x86_64"
-      sha256 "e30769bf24247acc80410ffba36ad0318ac6ce020f30a98d765825f41fbbab9e"
+      sha256 "5830238d9e967d38c790354a11d6e920f37c8fd81ba1e62f7516416a3e8d8751"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/eksecai/eksecd/releases/download/#{version}/eksecd-#{version}-linux-arm64"
-      sha256 "b04831ccc6b2fec0f89136a7afb46b21ce086992c41d36eb529aab5290c996cb"
+      sha256 "d459f571f88b5e7adba3f670a03c1691c609cb21ea016c18e8b05473dab16bbd"
     else
       url "https://github.com/eksecai/eksecd/releases/download/#{version}/eksecd-#{version}-linux-x86_64"
-      sha256 "3e181584109042debe511a31e1be0d3d4f57f1a45e3a22704df5a5196b1ed5d8"
+      sha256 "ac660cb60002c431dad0dbd47e398801934db0affa7937ff2cced617da1399ee"
     end
   end
 
