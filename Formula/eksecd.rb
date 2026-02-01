@@ -1,5 +1,5 @@
 class Eksecd < Formula
-  desc "CLI agent for Claude Code integration with Socket.IO backend"
+  desc "Daemon for running AI coding agents on the eksec.ai platform"
   homepage "https://github.com/eksecai/eksecd"
   license "MIT"
   version "0.0.53"
