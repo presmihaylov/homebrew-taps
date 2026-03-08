@@ -40,13 +40,13 @@ get_asset_sha256() {
     echo "Getting SHA256 for $asset_name..." >&2  # Send debug to stderr
 
     # Try to get SHA256 from the .sha256 file first
-    local sha256=$(gh release download "$VERSION" --repo eksecai/eksecd --pattern "$asset_name.sha256" --output - 2>/dev/null | cut -d' ' -f1 || true)
+    local sha256=$(gh release download "$VERSION" --repo nairiai/nairid --pattern "$asset_name.sha256" --output - 2>/dev/null | cut -d' ' -f1 || true)
 
     if [ -z "$sha256" ]; then
         echo "Warning: Could not get SHA256 file for $asset_name, calculating from binary..." >&2
         # Fallback: download the binary and calculate SHA256
         local temp_file=$(mktemp)
-        gh release download "$VERSION" --repo eksecai/eksecd --pattern "$asset_name" --output "$temp_file" >&2
+        gh release download "$VERSION" --repo nairiai/nairid --pattern "$asset_name" --output "$temp_file" >&2
         sha256=$(shasum -a 256 "$temp_file" | cut -d' ' -f1)
         rm "$temp_file"
     fi
@@ -67,26 +67,26 @@ echo "Updating formula with SHA256 hashes..."
 cat > "$FORMULA_FILE.tmp" << EOF
 class Eksecd < Formula
   desc "CLI agent for Claude Code integration with Socket.IO backend"
-  homepage "https://github.com/eksecai/eksecd"
+  homepage "https://github.com/nairiai/nairid"
   license "MIT"
   version "$VERSION"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/eksecai/eksecd/releases/download/#{version}/eksecd-#{version}-darwin-arm64"
+      url "https://github.com/nairiai/nairid/releases/download/#{version}/eksecd-#{version}-darwin-arm64"
       sha256 "$DARWIN_ARM64_SHA"
     else
-      url "https://github.com/eksecai/eksecd/releases/download/#{version}/eksecd-#{version}-darwin-x86_64"
+      url "https://github.com/nairiai/nairid/releases/download/#{version}/eksecd-#{version}-darwin-x86_64"
       sha256 "$DARWIN_X86_64_SHA"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/eksecai/eksecd/releases/download/#{version}/eksecd-#{version}-linux-arm64"
+      url "https://github.com/nairiai/nairid/releases/download/#{version}/eksecd-#{version}-linux-arm64"
       sha256 "$LINUX_ARM64_SHA"
     else
-      url "https://github.com/eksecai/eksecd/releases/download/#{version}/eksecd-#{version}-linux-x86_64"
+      url "https://github.com/nairiai/nairid/releases/download/#{version}/eksecd-#{version}-linux-x86_64"
       sha256 "$LINUX_X86_64_SHA"
     end
   end
