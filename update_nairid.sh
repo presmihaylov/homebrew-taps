@@ -24,9 +24,9 @@ if [[ "$VERSION" =~ ^v[0-9] ]]; then
     exit 1
 fi
 
-FORMULA_FILE="Formula/eksecd.rb"
+FORMULA_FILE="Formula/nairid.rb"
 
-echo "Updating eksecd Homebrew formula to version $VERSION..."
+echo "Updating nairid Homebrew formula to version $VERSION..."
 
 # Check if gh CLI is available
 if ! command -v gh &> /dev/null; then
@@ -56,48 +56,48 @@ get_asset_sha256() {
 
 # Get SHA256 hashes for all platforms
 echo "Fetching SHA256 hashes..."
-DARWIN_ARM64_SHA=$(get_asset_sha256 "eksecd-$VERSION-darwin-arm64")
-DARWIN_X86_64_SHA=$(get_asset_sha256 "eksecd-$VERSION-darwin-x86_64")
-LINUX_ARM64_SHA=$(get_asset_sha256 "eksecd-$VERSION-linux-arm64")
-LINUX_X86_64_SHA=$(get_asset_sha256 "eksecd-$VERSION-linux-x86_64")
+DARWIN_ARM64_SHA=$(get_asset_sha256 "nairid-$VERSION-darwin-arm64")
+DARWIN_X86_64_SHA=$(get_asset_sha256 "nairid-$VERSION-darwin-x86_64")
+LINUX_ARM64_SHA=$(get_asset_sha256 "nairid-$VERSION-linux-arm64")
+LINUX_X86_64_SHA=$(get_asset_sha256 "nairid-$VERSION-linux-x86_64")
 
 echo "Updating formula with SHA256 hashes..."
 
 # Create a temporary file with the updated formula
 cat > "$FORMULA_FILE.tmp" << EOF
-class Eksecd < Formula
-  desc "CLI agent for Claude Code integration with Socket.IO backend"
+class Nairid < Formula
+  desc "Nairi agent daemon"
   homepage "https://github.com/nairiai/nairid"
   license "MIT"
   version "$VERSION"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/nairiai/nairid/releases/download/#{version}/eksecd-#{version}-darwin-arm64"
+      url "https://github.com/nairiai/nairid/releases/download/#{version}/nairid-#{version}-darwin-arm64"
       sha256 "$DARWIN_ARM64_SHA"
     else
-      url "https://github.com/nairiai/nairid/releases/download/#{version}/eksecd-#{version}-darwin-x86_64"
+      url "https://github.com/nairiai/nairid/releases/download/#{version}/nairid-#{version}-darwin-x86_64"
       sha256 "$DARWIN_X86_64_SHA"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/nairiai/nairid/releases/download/#{version}/eksecd-#{version}-linux-arm64"
+      url "https://github.com/nairiai/nairid/releases/download/#{version}/nairid-#{version}-linux-arm64"
       sha256 "$LINUX_ARM64_SHA"
     else
-      url "https://github.com/nairiai/nairid/releases/download/#{version}/eksecd-#{version}-linux-x86_64"
+      url "https://github.com/nairiai/nairid/releases/download/#{version}/nairid-#{version}-linux-x86_64"
       sha256 "$LINUX_X86_64_SHA"
     end
   end
 
   def install
-    downloaded_file = Dir["eksecd-*"].first
-    bin.install downloaded_file => "eksecd"
+    downloaded_file = Dir["nairid-*"].first
+    bin.install downloaded_file => "nairid"
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/eksecd --version")
+    assert_match version.to_s, shell_output("#{bin}/nairid --version")
   end
 end
 EOF
@@ -105,7 +105,7 @@ EOF
 # Replace the original file
 mv "$FORMULA_FILE.tmp" "$FORMULA_FILE"
 
-echo "✅ eksecd Homebrew formula updated to version $VERSION!"
+echo "✅ nairid Homebrew formula updated to version $VERSION!"
 echo ""
 echo "SHA256 hashes:"
 echo "  macOS ARM64:  $DARWIN_ARM64_SHA"
@@ -114,10 +114,10 @@ echo "  Linux ARM64:  $LINUX_ARM64_SHA"
 echo "  Linux x86_64: $LINUX_X86_64_SHA"
 echo ""
 echo "Next steps:"
-echo "1. Commit and push: git add . && git commit -m 'Update eksecd to v$VERSION' && git push"
+echo "1. Commit and push: git add . && git commit -m 'Update nairid to v$VERSION' && git push"
 echo ""
 echo "Users can install with:"
 echo "  brew tap presmihaylov/taps"
-echo "  brew install eksecd"
+echo "  brew install nairid"
 echo "  OR"
-echo "  brew install presmihaylov/taps/eksecd"
+echo "  brew install presmihaylov/taps/nairid"
