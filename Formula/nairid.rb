@@ -2,25 +2,25 @@ class Nairid < Formula
   desc "Nairi agent daemon"
   homepage "https://github.com/nairiai/nairid"
   license "MIT"
-  version "0.0.135"
+  version "0.0.136"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nairiai/nairid/releases/download/#{version}/nairid-#{version}-darwin-arm64"
-      sha256 "d4e6c570e50cd0a07e88754d1798758c1dc4bf31f09477d937c82625d0f59b87"
+      sha256 "7cc16a63d26d5e4e15d368d1a22cad7f680baa8cf612d309c942c944c2f00549"
     else
       url "https://github.com/nairiai/nairid/releases/download/#{version}/nairid-#{version}-darwin-x86_64"
-      sha256 "00d314cff48bd457f57fdecc5fcf29f6240e84d9c0932ba15f552c88feb02633"
+      sha256 "f5c9c8b8d5cd0394c31a04ba587a7ff449f99f925532343fe59de56190b8a0f2"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/nairiai/nairid/releases/download/#{version}/nairid-#{version}-linux-arm64"
-      sha256 "9d72f110d9a46c19b290d4ab37ceca757d8b0333d261005509882ac24af44b74"
+      sha256 "2fa2c436883a1a78c386cfa5fa09eb5d1108221719d479186c362cdb37ddf201"
     else
       url "https://github.com/nairiai/nairid/releases/download/#{version}/nairid-#{version}-linux-x86_64"
-      sha256 "c78b561ff3c3b5a12d29d4de3f2399003b6ff23c279f051f3c795e68fd92b905"
+      sha256 "986c813c2c33522be75feddcf60613921c70756d36e839777573107509ad2a8f"
     end
   end
 
